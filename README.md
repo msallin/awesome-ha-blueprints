@@ -16,6 +16,8 @@ Reliable, customizable, fully tested by the community.
 
 <a href="https://www.buymeacoffee.com/epmatt"><img width="150" alt="yellow-button" src="https://user-images.githubusercontent.com/30753195/133942263-5fef0166-4ab5-4529-b931-37b5d14f02bf.png"></a>
 
+**Note:** this is a repository fork to include my fixes to the original code, all credits to the original developer.
+
 </div>
 
 ## Introduction
