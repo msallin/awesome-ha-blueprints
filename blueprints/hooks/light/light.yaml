@@ -532,6 +532,13 @@ action:
                     hs_color: '{{ [((state_attr(light,"hs_color")[0] or 0) + 15) % 360, 100] }}'
                     transition: 0.25
                   entity_id: !input light
+            - conditions: '{{ light_color_mode_id == "hs_color_white" }}'
+              sequence:
+                - service: light.turn_on
+                  data:
+                    hs_color: '{%- if state_attr(light,"hs_color")[0] > 15 or state_attr(light,"hs_color") == (0,0) -%} {{ [((state_attr(light,"hs_color")[0] or 0) - 15) % 360, 100] }} {%- else -%} [0,0] {%- endif -%}'
+                    transition: 0.25
+                  entity_id: !input light
       - conditions: '{{ action == color_down and light_color_mode_id != "none" }}'
         sequence:
           choose:
@@ -547,6 +554,13 @@ action:
                 - service: light.turn_on
                   data:
                     hs_color: '{{ [((state_attr(light,"hs_color")[0] or 0) - 15) % 360, 100] }}'
+                    transition: 0.25
+                  entity_id: !input light
+            - conditions: '{{ light_color_mode_id == "hs_color_white" }}'
+              sequence:
+                - service: light.turn_on
+                  data:
+                    hs_color: '{%- if state_attr(light,"hs_color")[0] > 15 or state_attr(light,"hs_color") == (0,0) -%} {{ [((state_attr(light,"hs_color")[0] or 0) - 15) % 360, 100] }} {%- else -%} [0,0] {%- endif -%}'
                     transition: 0.25
                   entity_id: !input light
       - conditions: '{{ action == color_up_repeat and light_color_mode_id != "none" }}'
@@ -576,6 +590,18 @@ action:
                         entity_id: !input light
                       - delay:
                           milliseconds: 250
+            - conditions: '{{ light_color_mode_id == "hs_color_white" }}'
+              sequence:
+                - repeat:
+                    while: '{{ true }}'
+                    sequence:
+                      - service: light.turn_on
+                        data:
+                          hs_color: '{%- if state_attr(light,"hs_color")[0] < 345 or state_attr(light,"hs_color") == (0,0) -%} {{ [((state_attr(light,"hs_color")[0] or 0) + 15) % 360, 100] }} {%- else -%} [0,0] {%- endif -%}'
+                          transition: 0.25
+                        entity_id: !input light
+                      - delay:
+                          milliseconds: 250
       - conditions: '{{ action == color_down_repeat and light_color_mode_id != "none" }}'
         sequence:
           choose:
@@ -599,6 +625,18 @@ action:
                       - service: light.turn_on
                         data:
                           hs_color: '{{ [((state_attr(light,"hs_color")[0] or 0) - 15) % 360, 100] }}'
+                          transition: 0.25
+                        entity_id: !input light
+                      - delay:
+                          milliseconds: 250
+            - conditions: '{{ light_color_mode_id == "hs_color_white" }}'
+              sequence:
+                - repeat:
+                    while: '{{ true }}'
+                    sequence:
+                      - service: light.turn_on
+                        data:
+                          hs_color: '{%- if state_attr(light,"hs_color")[0] > 15 or state_attr(light,"hs_color") == (0,0) -%} {{ [((state_attr(light,"hs_color")[0] or 0) - 15) % 360, 100] }} {%- else -%} [0,0] {%- endif -%}'
                           transition: 0.25
                         entity_id: !input light
                       - delay:
