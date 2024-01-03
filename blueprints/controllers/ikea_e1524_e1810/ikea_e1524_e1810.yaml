@@ -15,8 +15,9 @@ blueprint:
 
     🚀 This blueprint is part of the **[Awesome HA Blueprints](https://epmatt.github.io/awesome-ha-blueprints) project**.
 
-    ℹ️ Version 2022.08.08
-  source_url: https://github.com/EPMatt/awesome-ha-blueprints/blob/main/blueprints/controllers/ikea_e1524_e1810/ikea_e1524_e1810.yaml
+    ℹ️ Version 2024-01-03
+    Update to fix actions and regex for deCONZ
+  source_url: https://github.com/lsismeiro/awesome-ha-blueprints/blob/main/blueprints/controllers/ikea_e1524_e1810/ikea_e1524_e1810.yaml
   domain: automation
   input:
     integration:
@@ -341,11 +342,11 @@ variables:
       button_right_short: [press_256_13_0]
       button_right_long: [hold_3328_0]
       button_right_release: [release]
-      button_up_short: [step_with_on_off_0_43_5]
-      button_up_long: [move_with_on_off_0_83, move_with_on_off_0_84]
-      button_up_release: [stop]
-      button_down_short: [step_1_43_5]
-      button_down_long: [move_1_83, move_1_84]
+      button_up_short: [step_with_on_off_StepMode.Up_43_5]
+      button_up_long: [move_with_on_off_MoveMode.Up_84]
+      button_up_release: [stop_with_on_off]
+      button_down_short: [step_StepMode.Down_43_5_0_0]
+      button_down_long: [move_MoveMode.Down_84_0_0]
       button_down_release: [stop]
       button_center_short: [toggle]
       button_center_long: [press_2_0_0]
@@ -436,8 +437,8 @@ action:
         {%- elif integration_id == "zha" -%}
         {{ trigger.event.data.command }}{{"_" if trigger.event.data.args|length > 0}}{{ trigger.event.data.args|join("_") }}
         {%- endif -%}
-      trigger_delta: '{{ (as_timestamp(now()) - ((states(helper_last_controller_event) | from_json).t if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\": \".*\"|\"t\": \d+\.\d+)(, )?){2}\}$")) else as_timestamp("1970-01-01 00:00:00"))) * 1000 }}'
-      last_controller_event: '{{ (states(helper_last_controller_event) | from_json).a if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\": \".*\"|\"t\": \d+\.\d+)(, )?){2}\}$")) else "" }}'
+      trigger_delta: '{{ (as_timestamp(now()) - ((states(helper_last_controller_event) | from_json).t if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\":.*|\"t\":\d+\.\d+)(,)?){2}\}$")) else as_timestamp("1970-01-01 00:00:00"))) * 1000 }}'
+      last_controller_event: '{{ (states(helper_last_controller_event) | from_json).a if helper_last_controller_event is not none and (states(helper_last_controller_event) | regex_match("^\{((\"a\":.*|\"t\":\d+\.\d+)(,)?){2}\}$")) else "" }}'
   # update helper
   - service: input_text.set_value
     data:
