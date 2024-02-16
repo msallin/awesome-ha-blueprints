@@ -44,7 +44,7 @@ Blueprints are divided in categories. If you're interested in creating **control
 
 ## Contributing
 
-Please check our [Contribution Guidelines](https://github.com/EPMatt/awesome-ha-blueprints/blob/main/CONTRIBUTING.md) for additional information on how to contribute. From issues to new blueprints submissions, everything is described in detail to make sure the community can benefit the most from your contribution.
+Please check our [Contribution Guidelines](https://github.com/lsismeiro/awesome-ha-blueprints/blob/main/CONTRIBUTING.md) for additional information on how to contribute. From issues to new blueprints submissions, everything is described in detail to make sure the community can benefit the most from your contribution.
 
 ## Supporting the project
 
