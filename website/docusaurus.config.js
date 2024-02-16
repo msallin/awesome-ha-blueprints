@@ -13,7 +13,7 @@ module.exports = {
     announcementBar: {
       id: 'support_us',
       content:
-        '🚀 <b>Love this project?</b> <a target="_blank" href="https://github.com/EPMatt/awesome-ha-blueprints">Drop a star on GitHub</a>🌟 or <a target="_blank" href="https://www.buymeacoffee.com/epmatt">make a small donation</a>☕ to show your support!',
+        '🚀 <b>Love this project?</b> <a target="_blank" href="https://github.com/lsismeiro/awesome-ha-blueprints">Drop a star on GitHub</a>🌟 or <a target="_blank" href="https://www.buymeacoffee.com/epmatt">make a small donation</a>☕ to show your support!',
       backgroundColor: '#fffbd4',
       textColor: '#091E42',
     },
@@ -48,7 +48,7 @@ module.exports = {
           position: 'right',
         },
         {
-          href: 'https://github.com/EPMatt/awesome-ha-blueprints',
+          href: 'https://github.com/lsismeiro/awesome-ha-blueprints',
           label: 'GitHub',
           position: 'right',
         },
@@ -56,7 +56,7 @@ module.exports = {
     },
     footer: {
       links: [],
-      copyright: `Awesome HA Blueprints is maintained by <a href='https://github.com/EPMatt'>Matteo Agnoletto</a>.<br/>Licensed under the <a href='https://github.com/EPMatt/awesome-ha-blueprints/blob/main/LICENSE'>GPL-3.0 License</a>`,
+      copyright: `Awesome HA Blueprints is maintained by <a href='https://github.com/EPMatt'>Matteo Agnoletto</a>.<br/>Licensed under the <a href='https://github.com/lsismeiro/awesome-ha-blueprints/blob/main/LICENSE'>GPL-3.0 License</a>`,
     },
   },
   presets: [
@@ -65,7 +65,7 @@ module.exports = {
       {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
-          editUrl: 'https://github.com/EPMatt/awesome-ha-blueprints/edit/main/',
+          editUrl: 'https://github.com/lsismeiro/awesome-ha-blueprints/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
