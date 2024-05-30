@@ -1,8 +1,8 @@
 <div align="center">
 
-# Awesome HA Blueprints
+# Awesome HA Blueprints (Redux)
 
-<a href="https://epmatt.github.io/awesome-ha-blueprints/">
+<a href="https://github.com/lsismeiro/awesome-ha-blueprints">
 <img width=200 src="./awesome-ha-blueprints-logo.png"/>
 </a>
 <br/>
@@ -11,12 +11,7 @@ A curated collection of blueprints for Home Assistant.
 
 Reliable, customizable, fully tested by the community.
 
-![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen) ![GPL-3.0 License](https://img.shields.io/github/license/EPMatt/awesome-ha-blueprints) ![GitHub Workflow Status](https://img.shields.io/github/workflow/status/epmatt/awesome-ha-blueprints/Continuous%20Integration?label=checks%20and%20build) [![Community Topic here](https://img.shields.io/badge/home%20assistant%20forums-topic-blue)](https://community.home-assistant.io/t/awesome-ha-blueprints-a-curated-list-of-blueprints-easily-create-controller-based-automations-remotes-switches-for-controlling-lights-media-players-and-more/256687)
-![GitHub Discussions](https://img.shields.io/github/discussions/EPMatt/awesome-ha-blueprints)
-
-<a href="https://www.buymeacoffee.com/epmatt"><img width="150" alt="yellow-button" src="https://user-images.githubusercontent.com/30753195/133942263-5fef0166-4ab5-4529-b931-37b5d14f02bf.png"></a>
-
-**Note:** this is a repository fork to include my fixes to the original code, all credits to the original developer.
+**Note:** This is a repository fork to include community fixes to the original code, all credits to the original developer. As the original documentation is still online, many links return there. The only thing that changes is the repository (EPMatt ➡️lsismeiro) and the fixes under the hood.
 
 </div>
 
@@ -49,7 +44,3 @@ Please check our [Contribution Guidelines](https://github.com/lsismeiro/awesome-
 ## Supporting the project
 
 You can support Awesome HA Blueprints by just **dropping a star here on GitHub** :star:. This simple action will help the project to gain popularity and enlarge its community.
-
-Moreover, if you really love the project and want to support its future developments, please **consider [leaving a small donation](https://www.buymeacoffee.com/epmatt)**. ☕
-
-<a href="https://www.buymeacoffee.com/epmatt"><img width="150" alt="yellow-button" src="https://user-images.githubusercontent.com/30753195/133942263-5fef0166-4ab5-4529-b931-37b5d14f02bf.png"></a>
