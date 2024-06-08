@@ -176,7 +176,7 @@ blueprint:
       selector:
         number:
           min: 100
-          max: 750
+          max: 600
           step: 1
           unit_of_measurement: mired
           mode: slider
@@ -187,7 +187,7 @@ blueprint:
       selector:
         number:
           min: 100
-          max: 750
+          max: 600
           step: 1
           unit_of_measurement: mired
           mode: slider
