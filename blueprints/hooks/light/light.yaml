@@ -163,6 +163,34 @@ blueprint:
       default: true
       selector:
         boolean:
+    enable_clamp_color_temp:
+      name: (Optional) Enable clamping color temperature
+      description: Enable clamping of color temperature (i.e. enforcing min and max values)
+      default: false
+      selector:
+        boolean:
+    min_color_temp:
+      name: (Optional) Light minimum color temperature
+      description: The minimum color temperature the light can be set with this automation. Will only take an effect if the light color mode evaluates to "Color Temperature" and clamping of color temperature is enabled.
+      default: 153
+      selector:
+        number:
+          min: 100
+          max: 750
+          step: 1
+          unit_of_measurement: mired
+          mode: slider
+    max_color_temp:
+      name: (Optional) Light maximum color temperature
+      description: The maximum color temperature the light can be set with this automation. Will only take an effect if the light color mode evaluates to "Color Temperature" and clamping of color temperature is enabled.
+      default: 500
+      selector:
+        number:
+          min: 100
+          max: 750
+          step: 1
+          unit_of_measurement: mired
+          mode: slider
 # Automation schema
 variables:
   # convert blueprint inputs into variables to be used in templates
@@ -344,6 +372,9 @@ variables:
   on_brightness: !input on_brightness
   smooth_power_on: !input smooth_power_on
   smooth_power_off: !input smooth_power_off
+  enable_clamp_color_temp: !input enable_clamp_color_temp
+  min_color_temp: !input min_color_temp
+  max_color_temp: !input max_color_temp
   color_modes:
     Auto: auto
     Color Temperature: color_temp
@@ -526,6 +557,13 @@ action:
       - conditions: '{{ action == color_up and light_color_mode_id != "none" }}'
         sequence:
           choose:
+            - conditions: '{{ light_color_mode_id == "color_temp" and enable_clamp_color_temp }}'
+              sequence:
+                - service: light.turn_on
+                  data:
+                    color_temp: '{{ [ [state_attr(light,"color_temp")|int + 50, min_color_temp] | max, max_color_temp] | min }}'
+                    transition: 0.25
+                  entity_id: !input light
             - conditions: '{{ light_color_mode_id == "color_temp" }}'
               sequence:
                 - service: light.turn_on
@@ -543,6 +581,13 @@ action:
       - conditions: '{{ action == color_down and light_color_mode_id != "none" }}'
         sequence:
           choose:
+            - conditions: '{{ light_color_mode_id == "color_temp" and enable_clamp_color_temp }}'
+              sequence:
+                - service: light.turn_on
+                  data:
+                    color_temp: '{{ [ [state_attr(light,"color_temp")|int - 50, min_color_temp] | max, max_color_temp] | min }}'
+                    transition: 0.25
+                  entity_id: !input light
             - conditions: '{{ light_color_mode_id == "color_temp" }}'
               sequence:
                 - service: light.turn_on
@@ -560,6 +605,18 @@ action:
       - conditions: '{{ action == color_up_repeat and light_color_mode_id != "none" }}'
         sequence:
           choose:
+            - conditions: '{{ light_color_mode_id == "color_temp" and enable_clamp_color_temp }}'
+              sequence:
+                - repeat:
+                    while: '{{ true }}'
+                    sequence:
+                      - service: light.turn_on
+                        data:
+                          color_temp: '{{ [ [state_attr(light,"color_temp")|int + 50, min_color_temp] | max, max_color_temp] | min }}'
+                          transition: 0.25
+                        entity_id: !input light
+                      - delay:
+                          milliseconds: 250
             - conditions: '{{ light_color_mode_id == "color_temp" }}'
               sequence:
                 - repeat:
@@ -587,7 +644,19 @@ action:
       - conditions: '{{ action == color_down_repeat and light_color_mode_id != "none" }}'
         sequence:
           choose:
-            - conditions: '{{ light_color_mode_id == "color_temp" }}'
+            - conditions: '{{ light_color_mode_id == "color_temp" and enable_clamp_color_temp }}'
+              sequence:
+                - repeat:
+                    while: '{{ true }}'
+                    sequence:
+                      - service: light.turn_on
+                        data:
+                          color_temp: '{{ [ [state_attr(light,"color_temp")|int - 50, min_color_temp] | max, max_color_temp] | min }}'
+                          transition: 0.25
+                        entity_id: !input light
+                      - delay:
+                          milliseconds: 250
+            - conditions: '{{ light_color_mode_id == "color_temp"}}'
               sequence:
                 - repeat:
                     while: '{{ true }}'
