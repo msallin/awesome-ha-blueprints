@@ -165,7 +165,7 @@ blueprint:
         boolean:
     enable_clamp_color_temp:
       name: (Optional) Enable clamping color temperature
-      description: Enable clamping of color temperature (i.e. enforcing min and max values)
+      description: Enable clamping of color temperature (i.e. enforcing min and max values).
       default: false
       selector:
         boolean:
